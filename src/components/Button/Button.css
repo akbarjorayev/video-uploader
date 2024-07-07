@@ -1,0 +1,79 @@
+button {
+  position: relative;
+  padding: var(--pd-small-very) var(--pd);
+  border-radius: var(--bd-ra-big);
+  background-color: transparent;
+  border: none;
+  isolation: isolate;
+  overflow: hidden;
+
+  &:not([class*='_ha']):hover {
+    background-color: var(--bg-hover);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 var(--focus-visible-boxshadow-width) currentColor inset,
+      0 0 0 var(--focus-visible-boxshadow-width) var(--bg) inset;
+  }
+}
+
+button.btn_cl {
+  background-color: var(--main-color-bg);
+
+  &:hover {
+    background-color: var(--main-color-bg-hover);
+  }
+}
+
+button.btn_bd {
+  border: 1px solid currentColor;
+
+  &:hover {
+    border-color: color-mix(
+      in srgb,
+      currentColor 50%,
+      var(--theme-color-not) 50%
+    );
+  }
+}
+
+button.btn_bd_cl {
+  border: 1px solid var(--main-color-border);
+
+  &:hover {
+    border-color: var(--main-color-border-hover);
+  }
+}
+
+button.btn_bd_cr {
+  border: 1px solid currentColor;
+
+  &:hover {
+    border-color: color-mix(in srgb, currentColor 50%, #fff 50%);
+  }
+}
+
+.ripple {
+  position: absolute;
+  width: var(--ripple-max);
+  height: var(--ripple-max);
+  border-radius: 50%;
+  opacity: 0;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) scale(0);
+  animation: rippleEffect 0.3s linear(0 0%, 0.06 18.86%, 1 100%) forwards;
+  background-color: color-mix(in srgb, currentColor, transparent 70%);
+  z-index: -1;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+:root {
+  --ripple-max: 0;
+  --focus-visible-boxshadow-width: 2px;
+}
