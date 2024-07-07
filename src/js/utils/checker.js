@@ -12,7 +12,7 @@ export function checkApplication() {
 
 function getInitLocalData() {
   const data = {
-    id: 0,
+    id: false,
   }
 
   return data
