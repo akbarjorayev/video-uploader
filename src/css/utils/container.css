@@ -24,3 +24,7 @@
 .con_bd_df {
   border: 1px solid var(--border-color);
 }
+
+.con_bd_cl {
+  border: 1px solid var(--main-color-border);
+}

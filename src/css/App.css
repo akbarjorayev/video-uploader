@@ -1,8 +1,11 @@
 @import url('./utils/color.css');
+@import url('./utils/border.css');
 @import url('./utils/container.css');
 @import url('./utils/margin.css');
 @import url('./utils/padding.css');
 @import url('./utils/list.css');
+@import url('./utils/display.css');
+@import url('./utils/size.css');
 
 *,
 *::before,
@@ -24,6 +27,8 @@ body {
     sans-serif;
   font-size: 14px;
   height: 100%;
+  color: var(--text-df-color);
+  background-color: var(--bg-dark);
 }
 
 #root {
