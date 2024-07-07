@@ -4,5 +4,5 @@ import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 
 const app = initializeApp(API.firebase)
-export const firebaseFirestore = getFirestore(app)
+export const firebaseFirestore = getFirestore()
 export const firebaseStorage = getStorage()

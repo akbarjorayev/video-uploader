@@ -1,7 +1,18 @@
-import { collection, doc, setDoc, getDoc, deleteDoc } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  deleteDoc,
+  query,
+  getDocs,
+  where,
+  updateDoc,
+  increment,
+} from 'firebase/firestore'
 import { firebaseFirestore } from './firebaseInit'
 
-export async function saveFirestore(collectionName, docName, data) {
+export async function saveToFirestore(collectionName, docName, data) {
   const dataRef = collection(firebaseFirestore, collectionName)
 
   try {
@@ -19,6 +30,24 @@ export async function loadFromFirestore(collectionName, docName) {
 
     if (docSnap.exists()) return docSnap.data()
     return false
+  } catch {
+    return false
+  }
+}
+
+export async function loadFromFirestoreWhere(collectionName, myWhere) {
+  try {
+    const data = []
+    const q = query(
+      collection(firebaseFirestore, collectionName),
+      where(...myWhere)
+    )
+
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach((doc) => {
+      data.push(doc.data())
+    })
+    return data
   } catch {
     return false
   }
@@ -44,6 +73,40 @@ export async function deleteFromFirestore(collectionName, docName) {
 
   try {
     await deleteDoc(docRef)
+    return true
+  } catch {
+    return false
+  }
+}
+
+export async function incrementField(
+  collectionName,
+  docName,
+  fieldName,
+  incrementBy
+) {
+  const existsData = await loadFromFirestore(collectionName, docName)
+
+  if (!existsData) {
+    const saved = await saveToFirestore(collectionName, docName, {
+      [fieldName]: incrementBy,
+    })
+    return saved
+  }
+
+  if (!existsData[fieldName]) {
+    const edited = await editFirestore(collectionName, docName, {
+      [fieldName]: incrementBy,
+    })
+    return edited
+  }
+
+  const docRef = doc(firebaseFirestore, collectionName, docName)
+
+  try {
+    await updateDoc(docRef, {
+      [fieldName]: increment(incrementBy),
+    })
     return true
   } catch {
     return false
