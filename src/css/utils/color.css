@@ -1,0 +1,38 @@
+:root {
+  --theme-color: #000;
+  --theme-color-not: #fff;
+  --text-df-color: #ddd;
+
+  --bg: #373737;
+  --bg-dark: #252525;
+  --bg-hover: #373737;
+  --bg-active: #303030;
+
+  --border-color: #414141;
+
+  --main-color: #7dcacd;
+  --main-color-bg: #116b6e;
+  --main-color-bg-hover: #19898d;
+  --main-color-border: #247477;
+  --main-color-border-hover: #219fa3;
+  --main-color-border-focus-visible: #219fa3;
+  --main-color-border-focus: #1d5557;
+
+  --red-color: #cb5d5d;
+  --red-color-bg: #a41111;
+
+  --error-color: #d08383;
+  --error-color-border: #b91a1a;
+  --error-color-border-hover: #d86464;
+  --error-color-border-focus: #820d0d;
+
+  --selection-bg: #207c6a;
+
+  --scrollbar-bg: #132424;
+  --scrollbar-thumb-bg: #024245;
+
+  --game-con-bg: #111a39;
+
+  --game-won-bg: #378d3e;
+  --game-loser-bg: #8d3737;
+}

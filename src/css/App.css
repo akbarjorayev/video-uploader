@@ -1,3 +1,9 @@
+@import url('./utils/color.css');
+@import url('./utils/container.css');
+@import url('./utils/margin.css');
+@import url('./utils/padding.css');
+@import url('./utils/list.css');
+
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 *,
