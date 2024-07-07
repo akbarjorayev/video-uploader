@@ -1,10 +1,10 @@
-import { getDownloadURL, ref, uploadString } from 'firebase/storage'
+import { getDownloadURL, ref } from 'firebase/storage'
 import { firebaseStorage } from './firebaseInit'
 
-export async function uploadString4ToStore(path, message4) {
+export async function uploadBytes(path, file) {
   const storageRef = ref(firebaseStorage, path)
 
-  return uploadString(storageRef, message4, 'data_url')
+  return uploadBytes(storageRef, file)
     .then(() => {
       return true
     })
