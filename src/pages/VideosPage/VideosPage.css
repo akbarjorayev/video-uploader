@@ -1,3 +1,14 @@
 .video_page_con {
   width: min(95%, 400px);
 }
+
+.video_alert_video {
+  width: 140px;
+  height: 80px;
+  border-radius: var(--bd-ra);
+  background-color: var(--main-color-bg);
+
+  & span {
+    font-size: 4em;
+  }
+}
