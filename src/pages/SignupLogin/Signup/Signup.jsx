@@ -1,9 +1,15 @@
 import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
 
 import Button from '../../../components/Button/Button'
 import Input from '../../../components/Input/Input'
 
 import { goToHref } from '../../../js/utils/href'
+import { toastData } from '../../../js/utils/toast'
+import {
+  createAccount,
+  saveIDToLocalStorage,
+} from '../../../modules/account.module'
 
 import '../SignupLogin.css'
 
@@ -13,13 +19,30 @@ export default function Signup() {
     username: '',
     password: '',
   })
+  const [disabled, setDisabled] = useState(false)
 
-  async function createAcc() {
-    console.log(inputData)
+  async function createAcc(e) {
+    e.preventDefault()
+    setDisabled(true)
+
+    const created = await createAccount(inputData)
+    if (!created.ok) toast.error(created.msg)
+    if (created.ok) {
+      const loggedIn = saveIDToLocalStorage(created.id)
+      if (loggedIn.ok) goToHref('/')
+    }
+
+    setDisabled(false)
   }
 
   return (
     <>
+      <ToastContainer
+        position={toastData.position}
+        autoClose={toastData.autoClose}
+        theme={toastData.theme}
+        draggable
+      />
       <div className="d_f_ce h_100">
         <div className="con_bd_cl account_page_con list_y">
           <div className="list_x d_f_jc_sb">
@@ -32,39 +55,39 @@ export default function Signup() {
             </Button>
           </div>
           <hr />
-          <Input
-            label="Name"
-            value={inputData.name}
-            autoFocus
-            onChange={(e) =>
-              setInputData({ ...inputData, name: e.target.value })
-            }
-          />
-          <Input
-            label="Username"
-            value={inputData.username}
-            autoFocus
-            onChange={(e) =>
-              setInputData({ ...inputData, username: e.target.value })
-            }
-          />
-          <Input
-            label="Password"
-            type="password"
-            value={inputData.password}
-            onChange={(e) =>
-              setInputData({ ...inputData, password: e.target.value })
-            }
-          />
-          <Button
-            className="btn_cl"
-            disabled={
-              !inputData.name || !inputData.username || !inputData.password
-            }
-            onClick={createAcc}
-          >
-            Create account
-          </Button>
+          <form className="list_y" onSubmit={createAcc} disabled={disabled}>
+            <Input
+              label="Name"
+              value={inputData.name}
+              autoFocus
+              onChange={(e) =>
+                setInputData({ ...inputData, name: e.target.value })
+              }
+            />
+            <Input
+              label="Username"
+              value={inputData.username}
+              onChange={(e) =>
+                setInputData({ ...inputData, username: e.target.value })
+              }
+            />
+            <Input
+              label="Password"
+              type="password"
+              value={inputData.password}
+              onChange={(e) =>
+                setInputData({ ...inputData, password: e.target.value })
+              }
+            />
+            <Button
+              className="btn_cl"
+              disabled={
+                !inputData.name || !inputData.username || !inputData.password
+              }
+            >
+              {disabled ? 'Creating account' : 'Create account'}
+            </Button>
+          </form>
         </div>
       </div>
     </>
