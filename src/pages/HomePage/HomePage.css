@@ -1,0 +1,60 @@
+.home_page_logo_con {
+  width: 300px;
+}
+
+.home_page img {
+  --bd-ra: 30px;
+
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--bd-ra);
+  scale: 0.8;
+  box-shadow: 0 0 200px 0 #021131, 0 0 100px 0 #014f84;
+  animation: scaleTo1 1s var(--spring-transition) forwards;
+}
+
+.home_page_play_btn {
+  text-align: center;
+  background-color: var(--main-color-bg);
+  font-family: monospace;
+  border-radius: 2em;
+  width: 0;
+  overflow: hidden;
+  padding: var(--pd) 0;
+  opacity: 0;
+  border: 0;
+  isolation: isolate;
+  cursor: pointer;
+  animation: homePagePlayBtnAnim 1.5s var(--spring-transition) forwards;
+}
+
+.scale_trns {
+  transition: scale 0.3s var(--spring-transition);
+
+  &:active {
+    scale: 0.95;
+  }
+}
+
+@keyframes homePagePlayBtnAnim {
+  to {
+    width: 100%;
+    overflow: visible;
+    padding: var(--pd);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleTo1 {
+  to {
+    scale: 1;
+  }
+}
+
+.home_page_play_btn span {
+  text-wrap: nowrap;
+}
+
+:root {
+  --spring-transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
