@@ -15,6 +15,10 @@
   justify-content: center;
 }
 
+.d_f_1 {
+  flex: 1;
+}
+
 .d_n {
   display: none;
 }
