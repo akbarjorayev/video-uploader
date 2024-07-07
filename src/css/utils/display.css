@@ -1,0 +1,11 @@
+.d_f_ce {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.d_f_jc_sb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

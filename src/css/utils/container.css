@@ -1,0 +1,30 @@
+*[class^='con'] {
+  padding: var(--pd);
+  border-radius: var(--bd-ra-big);
+}
+
+& .con_ha {
+  &:hover {
+    background-color: var(--bg-hover);
+  }
+
+  &:active {
+    background-color: var(--bg-active);
+  }
+}
+
+.con_bg_dr {
+  background-color: var(--bg-dark);
+}
+
+.con_bg_df {
+  background-color: var(--bg);
+}
+
+.con_bd_df {
+  border: 1px solid var(--border-color);
+}
+
+.con_bd_cl {
+  border: 1px solid var(--main-color-border);
+}
