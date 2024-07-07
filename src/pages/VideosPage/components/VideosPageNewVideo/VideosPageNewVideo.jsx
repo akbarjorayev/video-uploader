@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import Alert from '../../../../components/Alert/Alert'
-import Button from '../../../../components/Button/Button'
 
 import { calcSize } from '../../../../js/utils/file'
+import { useFirebaseStoreRealtime } from '../../../../hooks/useFirebaseStore'
+import { loadFromLocalStorage } from '../../../../js/localDB/localstorage'
 
 export default function VideosPageNewVideo() {
   const fileInput = useRef()
@@ -33,6 +34,17 @@ export default function VideosPageNewVideo() {
 }
 
 function VideoAlert({ file, setFile }) {
+  const id = useRef(loadFromLocalStorage('aj_videos')?.id).current
+  const [upload, setUpload] = useState(false)
+  const { p, url, err } = useFirebaseStoreRealtime(`${id}/video`, file, upload)
+
+  useEffect(() => {
+    if (p === 100) {
+      setFile(false)
+      setUpload(false)
+    }
+  }, [url])
+
   return (
     <>
       <Alert onHide={() => setFile(false)}>
@@ -47,8 +59,18 @@ function VideoAlert({ file, setFile }) {
                   {file.name}
                 </h2>
                 <div className="fz_small txt_opa">{calcSize(file.size)}</div>
+                {upload && <div className="fz_small">{Math.floor(p)}%</div>}
               </div>
-              <Button className="btn_cl w_100">Upload</Button>
+              <button
+                className="btn_bd_cl video_alert_btn w_100"
+                onClick={() => setUpload(true)}
+              >
+                <div
+                  className="video_alert_btn_bg"
+                  style={{ left: `${p - 100}%` }}
+                ></div>
+                <span>Upload</span>
+              </button>
             </div>
           </div>
         </div>
