@@ -48,6 +48,11 @@ export default function VideosPage() {
             <hr />
           </div>
           <VideosPageVideosList account={account} />
+          <hr />
+          <div className="con_bd_df d_f_ce fz_small txt_opa">
+            Please reload to see new uploaded videos
+          </div>
+          <hr />
           <VideosPageNewVideo />
         </div>
       </div>

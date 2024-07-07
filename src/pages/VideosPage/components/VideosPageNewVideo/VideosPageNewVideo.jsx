@@ -76,6 +76,7 @@ function VideoAlert({ file, setFile }) {
               <button
                 className="btn_bd_cl video_alert_btn w_100"
                 onClick={() => setUpload(true)}
+                disabled={upload}
               >
                 <div
                   className="video_alert_btn_bg"
