@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import './css/App.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Login = React.lazy(() => import('./pages/SignupLogin/Login/Login'))
 const Signup = React.lazy(() => import('./pages/SignupLogin/Signup/Signup'))
