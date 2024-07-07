@@ -8,6 +8,8 @@
   --bg-hover: #373737;
   --bg-active: #303030;
 
+  --alert-bg-color: #00000058;
+
   --border-color: #414141;
 
   --main-color: #7dcacd;
@@ -19,6 +21,7 @@
   --main-color-border-focus: #1d5557;
 
   --red-color: #cb5d5d;
+  --red-color-border: #941a1a;
   --red-color-bg: #a41111;
 
   --error-color: #d08383;

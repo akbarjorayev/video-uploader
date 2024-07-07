@@ -28,3 +28,7 @@
 .con_bd_cl {
   border: 1px solid var(--main-color-border);
 }
+
+.con_bd_red {
+  border: 1px solid var(--red-color-border);
+}

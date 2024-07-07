@@ -7,6 +7,7 @@ import {
   loadFromLocalStorage,
   saveToLocalStorage,
 } from '../js/localDB/localstorage'
+import { goToHref } from '../js/utils/href'
 import { getNewUserID, isUsernameTaken } from './utils/account.module.util'
 
 export async function createAccount({ name, username, password }) {
@@ -40,4 +41,9 @@ export async function loginToAccount({ username, password }) {
     return { ok: false, msg: 'Password is incorrect' }
 
   return { ok: true, msg: 'Logged in successfully', id: account.id }
+}
+
+export function logoutFromAccount() {
+  saveIDToLocalStorage(false)
+  goToHref('/')
 }

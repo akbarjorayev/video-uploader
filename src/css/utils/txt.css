@@ -1,0 +1,13 @@
+.txt_red {
+  color: var(--red-color);
+}
+
+.txt_opa {
+  opacity: 0.5;
+}
+
+.txt_nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
