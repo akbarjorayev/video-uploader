@@ -9,3 +9,8 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.d_f_jc_ce {
+  display: flex;
+  justify-content: center;
+}
