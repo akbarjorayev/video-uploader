@@ -1,4 +1,4 @@
-import { getDownloadURL, ref } from 'firebase/storage'
+import { getDownloadURL, getMetadata, ref } from 'firebase/storage'
 import { firebaseStorage } from './firebaseInit'
 
 export async function uploadBytes(path, file) {
@@ -13,12 +13,24 @@ export async function uploadBytes(path, file) {
     })
 }
 
-export async function downloadFromStore(path) {
+export async function downloadURLFromStore(path) {
   const starsRef = ref(firebaseStorage, path)
 
   return getDownloadURL(starsRef)
     .then((url) => {
       return url
+    })
+    .catch(() => {
+      return false
+    })
+}
+
+export async function downloadMetaDataFromStore(path) {
+  const starsRef = ref(firebaseStorage, path)
+
+  return getMetadata(starsRef)
+    .then((metadata) => {
+      return metadata
     })
     .catch(() => {
       return false
