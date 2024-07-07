@@ -8,6 +8,7 @@ import VideosPageVideosList from './components/VideosPageVideosList/VideosPageVi
 import { goToHref } from '../../js/utils/href'
 import { useFirestore } from '../../hooks/useFirebaseFirestore'
 import { loadFromLocalStorage } from '../../js/localDB/localstorage'
+import { logoutFromAccount } from '../../modules/account.module'
 
 import './VideosPage.css'
 
@@ -33,7 +34,13 @@ export default function VideosPage() {
               className="btn_bd_cl fz_small"
               onClick={() => goToHref('/account/login')}
             >
-              Add account
+              Change account
+            </Button>
+            <Button
+              className="btn_bd_cr txt_red fz_small"
+              onClick={logoutFromAccount}
+            >
+              Logout
             </Button>
           </div>
           <div>
