@@ -5,6 +5,8 @@ import Alert from '../../../../components/Alert/Alert'
 import { calcSize } from '../../../../js/utils/file'
 import { useFirebaseStoreRealtime } from '../../../../hooks/useFirebaseStore'
 import { loadFromLocalStorage } from '../../../../js/localDB/localstorage'
+import { incrementField } from '../../../../js/db/firebaseFirestore'
+import { useFirestore } from '../../../../hooks/useFirebaseFirestore'
 
 export default function VideosPageNewVideo() {
   const fileInput = useRef()
@@ -36,10 +38,20 @@ export default function VideosPageNewVideo() {
 function VideoAlert({ file, setFile }) {
   const id = useRef(loadFromLocalStorage('aj_videos')?.id).current
   const [upload, setUpload] = useState(false)
-  const { p, url, err } = useFirebaseStoreRealtime(`${id}/video`, file, upload)
+  const [account] = useFirestore('accounts', `${id}`)
+  const { p, url, err } = useFirebaseStoreRealtime(
+    `${id}/${(account?.videos || 0) + 1}`,
+    file,
+    upload
+  )
 
   useEffect(() => {
+    async function increase() {
+      await incrementField('accounts', `${id}`, 'videos', 1)
+    }
+
     if (p === 100) {
+      increase()
       setFile(false)
       setUpload(false)
     }
