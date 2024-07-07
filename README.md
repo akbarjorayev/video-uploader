@@ -1,2 +1,2 @@
-# Video-uploader
+# AJ-Video uploader
 Upload and send your video to everyone!
