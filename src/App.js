@@ -7,6 +7,7 @@ import './css/App.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 const HomePage = React.lazy(() => import('./pages/HomePage/HomePage'))
+const VideosPage = React.lazy(() => import('./pages/VideosPage/VideosPage'))
 const Login = React.lazy(() => import('./pages/SignupLogin/Login/Login'))
 const Signup = React.lazy(() => import('./pages/SignupLogin/Signup/Signup'))
 
@@ -21,6 +22,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/videos" element={<VideosPage />} />
           <Route path="/account/login" element={<Login />} />
           <Route path="/account/signup" element={<Signup />} />
         </Routes>
