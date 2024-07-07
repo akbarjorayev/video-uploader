@@ -1,0 +1,44 @@
+input {
+  width: 100%;
+  position: relative;
+  padding: var(--pd-small) var(--pd);
+  border-radius: var(--bd-ra);
+  background-color: var(--bg);
+  border: 1px solid var(--main-color-border);
+  isolation: isolate;
+  overflow: hidden;
+
+  &:hover {
+    border-color: var(--main-color-border-hover);
+  }
+
+  &:focus {
+    border-color: var(--main-color-border-focus);
+  }
+}
+
+input.error {
+  border-color: var(--error-color-border);
+
+  &:hover {
+    border-color: var(--error-color-border-hover);
+  }
+
+  &:focus {
+    border-color: var(--error-color-border-focus);
+  }
+}
+
+.input_area:has(.error) {
+  label {
+    color: var(--error-color);
+  }
+}
+
+label {
+  font-size: 0.9em;
+}
+
+.input_area button {
+  padding: var(--pd-small-very) var(--pd-small);
+}
